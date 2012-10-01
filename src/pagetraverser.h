@@ -22,7 +22,7 @@ private:
     QEventLoop *loop;
     WebElement *root;
 
-    WebElement* populateTree(const QWebElement &e);
+    WebElement* populateTree(const QString parentPath, const QWebElement &e);
     
 signals:
     void fetched();

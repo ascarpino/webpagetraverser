@@ -30,31 +30,59 @@ QList<WebElement *>* WebElement::getChildren()
 QString WebElement::toString()
 {
     QString str;
-    str.append("Parent Path: " + this->m_parentPath + "\n");
-    str.append("Tagname: " + this->m_tagname + "\n");
-    str.append("\t\tTop: " + QString::number(this->m_position.m_top) + "\n");
-    str.append("\tLeft: " + QString::number(this->m_position.m_left) + "\tRight: "
-               + QString::number(this->m_position.m_right) + "\n");
-    str.append("\t\tBottom: " + QString::number(this->m_position.m_bottom) + "\n");
-    str.append("\tHeight: " + QString::number(this->m_size.m_height) + "\n");
-    str.append("\tWidth: " + QString::number(this->m_size.m_width) + "\n");
+
+    str.append("Parent Path: " + this->m_parentPath + " Node Tag: " + this->m_tagname + "\n");
+    str.append(" Position: " + QString::number(this->m_position.m_top) + " " +
+               QString::number(this->m_position.m_left) + " " +
+               QString::number(this->m_position.m_right) + " " +
+               QString::number(this->m_position.m_bottom) + "\n");
+    str.append(" Size: " + QString::number(this->m_size.m_height) + " " + QString::number(this->m_size.m_width) + "\n");
 
     if (!this->m_attributes.isEmpty()) {
-        str.append("\tAttributes:\n");
+        str.append(" Attributes: ");
         foreach (QString attr, this->m_attributes.keys()) {
-            str.append("\t\t" + attr + " = \"" + this->m_attributes.value(attr) + "\"\n");
+            str.append(" " + attr + " = \"" + this->m_attributes.value(attr) + "\"");
         }
     }
 
     if (!this->m_children.isEmpty()) {
-        str.append("\tInnerList: (" + QString::number(this->m_children.count()) + ")\n");
+        str.append("\tInnerList: (size: " + QString::number(this->m_children.count()) + ")\n");
         foreach (WebElement *element, this->m_children) {
-            QStringList lines = element->toString().split("\n");
-            foreach (QString line, lines) {
-                str.append("\t\t" + line + "\n");
-            }
+                str.append("\t" + element->toString() + "\n");
         }
     }
 
     return str;
 }
+
+//QString WebElement::toString()
+//{
+//    QString str;
+//    str.append("Parent Path: " + this->m_parentPath + "\n");
+//    str.append("Tagname: " + this->m_tagname + "\n");
+//    str.append("\t\tPosition: " + QString::number(this->m_position.m_top) +  "\n");
+//    str.append("\tLeft: " + QString::number(this->m_position.m_left) + "\tRight: "
+//               + QString::number(this->m_position.m_right) + "\n");
+//    str.append("\t\tBottom: " + QString::number(this->m_position.m_bottom) + "\n");
+//    str.append("\tHeight: " + QString::number(this->m_size.m_height) + "\n");
+//    str.append("\tWidth: " + QString::number(this->m_size.m_width) + "\n");
+
+//    if (!this->m_attributes.isEmpty()) {
+//        str.append("\tAttributes:\n");
+//        foreach (QString attr, this->m_attributes.keys()) {
+//            str.append("\t\t" + attr + " = \"" + this->m_attributes.value(attr) + "\"\n");
+//        }
+//    }
+
+//    if (!this->m_children.isEmpty()) {
+//        str.append("\tInnerList: (" + QString::number(this->m_children.count()) + ")\n");
+//        foreach (WebElement *element, this->m_children) {
+//            QStringList lines = element->toString().split("\n");
+//            foreach (QString line, lines) {
+//                str.append("\t\t" + line + "\n");
+//            }
+//        }
+//    }
+
+//    return str;
+//}
