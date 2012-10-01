@@ -4,7 +4,6 @@
 #include "webelement.h"
 
 #include <QtCore/QEventLoop>
-#include <QtCore/QList>
 #include <QtCore/QObject>
 #include <QtWebKit/QWebElement>
 #include <QtWebKit/QWebPage>
@@ -28,10 +27,7 @@ signals:
     void fetched();
 
 public slots:
-    void extractElements();
-
-
-    
+    void extractElements();    
 };
 
 #endif // PAGETRAVERSER_H

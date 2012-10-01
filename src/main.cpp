@@ -15,7 +15,5 @@ int main(int argc, char *argv[])
     qout << root->toString();
     qout.flush();
 
-    system(0);
-
     return a.exec();
 }

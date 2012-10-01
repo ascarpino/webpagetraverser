@@ -23,8 +23,8 @@ PageTraverser::~PageTraverser()
     delete &root;
 }
 
- WebElement* PageTraverser::traverse(const QString &url)
- {
+WebElement* PageTraverser::traverse(const QString &url)
+{
     //load the page
     QWebFrame *frame = page->mainFrame();
     frame->load(QUrl(url));
@@ -33,26 +33,26 @@ PageTraverser::~PageTraverser()
     loop->exec();
 
     return root;
- }
+}
 
- void PageTraverser::extractElements()
- {
+void PageTraverser::extractElements()
+{
 //     QTextStream qout(stdout);
 //     qout << "Loaded webpage: " << page->mainFrame()->url().toString() << "\n";
 //     qout.flush();
 
-     QWebFrame *frame = page->mainFrame();
-     QWebElement doc = frame->documentElement();
-     QWebElement head = doc.firstChild();
-     QWebElement body = head.nextSibling();
+    QWebFrame *frame = page->mainFrame();
+    QWebElement doc = frame->documentElement();
+    QWebElement head = doc.firstChild();
+    QWebElement body = head.nextSibling();
 
-     root =  populateTree("body",body);
+    root = populateTree("HTML", body);
 
-     emit fetched();
- }
+    emit fetched();
+}
 
- WebElement* PageTraverser::populateTree(const QString parentPath, const QWebElement &e)
- {
+WebElement* PageTraverser::populateTree(const QString parentPath, const QWebElement &e)
+{
     //parent path
     QString path = parentPath + "/" + e.tagName();
 
@@ -77,16 +77,16 @@ PageTraverser::~PageTraverser()
     }
 
     //create web Element
-    WebElement* node = new WebElement(path,e.tagName(),position, size,attributes);
+    WebElement* node = new WebElement(path, e.tagName(), position, size, attributes);
 
      //per ogni figlio
      //lista dei figli add populateTree(figlio);
     for (QWebElement elem = e.firstChild(); !elem.isNull(); elem = elem.nextSibling()) {
-        node->getChildren()->append(populateTree(path,elem));
+        node->getChildren()->append(populateTree(path, elem));
     }
 
     return node;
- }
+}
 
 
 

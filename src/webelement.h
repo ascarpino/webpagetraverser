@@ -34,8 +34,7 @@ private:
     Position m_position;
     Size m_size;
     QHash<QString, QString> m_attributes;
-    QList<WebElement *> m_children;
-    
+    QList<WebElement *> m_children;   
 };
 
 #endif // WEBELEMENT_H
