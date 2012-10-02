@@ -1,21 +1,23 @@
 #ifndef WEBELEMENT_H
 #define WEBELEMENT_H
 
+// Qt headers
 #include <QtCore/QHash>
 #include <QtCore/QList>
 #include <QtCore/QObject>
 #include <QtCore/QString>
+#include <QtCore/QVariant>
 
 struct Position {
-    qint16 m_top;
-    qint16 m_left;
-    qint16 m_right;
-    qint16 m_bottom;
+    qint16 top;
+    qint16 left;
+    qint16 right;
+    qint16 bottom;
 };
 
 struct Size {
-    qint16 m_height;
-    qint16 m_width;
+    qint16 height;
+    qint16 width;
 };
 
 class WebElement : public QObject
@@ -27,6 +29,7 @@ public:
     virtual ~WebElement();
     QList<WebElement *> *getChildren();
     QString toString();
+    QVariantList toQVariant();
 
 private:
     QString m_parentPath;

@@ -10,6 +10,8 @@ TARGET = WebPageTraverser
 CONFIG   += console
 CONFIG   -= app_bundle
 
+LIBS += "-lqjson"
+
 TEMPLATE = app
 
 SOURCES += src/main.cpp \
@@ -19,5 +21,3 @@ SOURCES += src/main.cpp \
 HEADERS += \
     src/webelement.h \
     src/pagetraverser.h
-
-OTHER_FILES +=

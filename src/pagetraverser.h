@@ -1,8 +1,10 @@
 #ifndef PAGETRAVERSER_H
 #define PAGETRAVERSER_H
 
+// our headers
 #include "webelement.h"
 
+// Qt headers
 #include <QtCore/QEventLoop>
 #include <QtCore/QObject>
 #include <QtWebKit/QWebElement>

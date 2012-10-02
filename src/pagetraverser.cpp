@@ -1,3 +1,4 @@
+// our headers
 #include "pagetraverser.h"
 
 // Qt headers
@@ -29,7 +30,7 @@ WebElement* PageTraverser::traverse(const QString &url)
     QWebFrame *frame = page->mainFrame();
     frame->load(QUrl(url));
 
-    //wait for page loaded signal
+    //loop until the fetched signal is emitted
     loop->exec();
 
     return root;
@@ -48,6 +49,7 @@ void PageTraverser::extractElements()
 
     root = populateTree("HTML", body);
 
+    // we've done here
     emit fetched();
 }
 
@@ -58,15 +60,15 @@ WebElement* PageTraverser::populateTree(const QString parentPath, const QWebElem
 
     //position
     Position position;
-    position.m_top = e.geometry().top();
-    position.m_left = e.geometry().left();
-    position.m_right = e.geometry().right();
-    position.m_bottom = e.geometry().bottom();
+    position.top = e.geometry().top();
+    position.left = e.geometry().left();
+    position.right = e.geometry().right();
+    position.bottom = e.geometry().bottom();
 
     //size
     Size size;
-    size.m_height = e.geometry().height();
-    size.m_width = e.geometry().width();
+    size.height = e.geometry().height();
+    size.width = e.geometry().width();
 
     //attributes
     QHash<QString, QString> attributes;
@@ -76,25 +78,14 @@ WebElement* PageTraverser::populateTree(const QString parentPath, const QWebElem
         }
     }
 
-    //create web Element
+    //create the web Element
     WebElement* node = new WebElement(path, e.tagName(), position, size, attributes);
 
-     //per ogni figlio
-     //lista dei figli add populateTree(figlio);
+    //for each child
+    //lista dei figli add populateTree(figlio);
     for (QWebElement elem = e.firstChild(); !elem.isNull(); elem = elem.nextSibling()) {
         node->getChildren()->append(populateTree(path, elem));
     }
 
     return node;
 }
-
-
-
-
-
-
-
-
-
-
-
