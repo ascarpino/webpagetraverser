@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 
             if (arg == "-h") {
                 usage();
-                exit(0);
+                a.quit();
                 continue;
             }
         }
@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
         a.quit();
     } else {
         usage();
-        exit(0);
+        a.quit();
     }
 
     return 0;

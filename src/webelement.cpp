@@ -67,12 +67,22 @@ QVariantList WebElement::toQVariant()
 
     map.insert("ParentPath", this->m_parentPath);
     map.insert("NodeTag", this->m_tagname);
-    map.insert("Top", this->m_position.top);
-    map.insert("Left", this->m_position.left);
-    map.insert("Right", this->m_position.right);
-    map.insert("Bottom", this->m_position.bottom);
-    map.insert("Height", this->m_size.height);
-    map.insert("Width", this->m_size.width);
+
+    QVariantList position;
+    QVariantMap pos_map;
+    pos_map.insert("top", this->m_position.top);
+    pos_map.insert("left", this->m_position.left);
+    pos_map.insert("right", this->m_position.right);
+    pos_map.insert("bottom", this->m_position.bottom);
+    position.append(pos_map);
+    map.insert("Position", position);
+
+    QVariantList size;
+    QVariantMap size_map;
+    size_map.insert("height", this->m_size.height);
+    size_map.insert("width", this->m_size.width);
+    size.append(size_map);
+    map.insert("Size", size);
 
     if (!this->m_attributes.isEmpty()) {
         QVariantList attributes;
