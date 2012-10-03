@@ -33,7 +33,7 @@ public:
 
 private:
     QString m_parentPath;
-    QString m_tagname;
+    QString m_nodetag;
     Position m_position;
     Size m_size;
     QHash<QString, QString> m_attributes;

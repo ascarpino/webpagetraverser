@@ -5,12 +5,12 @@
 #include <QtCore/QStringList>
 #include <QtCore/QVariantMap>
 
-WebElement::WebElement(QString parentPath, QString tagName, Position &position,
+WebElement::WebElement(QString parentPath, QString nodeTag, Position &position,
                        Size &size, QHash<QString, QString> &attributes,
                        QObject *parent)
     : QObject(parent)
     , m_parentPath(parentPath)
-    , m_tagname(tagName)
+    , m_nodetag(nodeTag)
     , m_position(position)
     , m_size(size)
     , m_attributes(attributes)
@@ -20,7 +20,7 @@ WebElement::WebElement(QString parentPath, QString tagName, Position &position,
 WebElement::~WebElement()
 {
     delete &m_parentPath;
-    delete &m_tagname;
+    delete &m_nodetag;
     delete &m_position;
     delete &m_size;
     delete &m_attributes;
@@ -36,7 +36,7 @@ QString WebElement::toString()
 {
     QString str;
 
-    str.append("Parent Path: " + this->m_parentPath + " Node Tag: " + this->m_tagname + "\n");
+    str.append("Parent Path: " + this->m_parentPath + " Node Tag: " + this->m_nodetag + "\n");
     str.append(" Position: " + QString::number(this->m_position.top) + " " +
                QString::number(this->m_position.left) + " " +
                QString::number(this->m_position.right) + " " +
@@ -66,7 +66,7 @@ QVariantList WebElement::toQVariant()
     QVariantMap map;
 
     map.insert("ParentPath", this->m_parentPath);
-    map.insert("NodeTag", this->m_tagname);
+    map.insert("NodeTag", this->m_nodetag);
 
     QVariantList position;
     QVariantMap pos_map;
