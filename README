@@ -1,0 +1,12 @@
+
+WebPageTraverser is a tool to retrieve webelements information.
+It includes infos about the position.
+
+= Dependencies =
+* qt (http://qt-project.org/)
+* qjson (http://qjson.sourceforge.net/)
+
+= Installation =
+$ qmake
+$ make
+# make install
