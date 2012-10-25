@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
     appPath = a.arguments().first();
 
     QString url, fileName;
+    double version = 1.00;
     bool json = false;
 
     if (a.arguments().size() > 1) {
@@ -45,6 +46,12 @@ int main(int argc, char *argv[])
 
             if (arg == "-h") {
                 usage();
+                a.quit();
+            }
+
+            if (arg == "-V") {
+                qout << "Version: " << QString::number(version, 'f', 2) << "\n";
+                qout.flush();
                 a.quit();
             }
         }
@@ -95,5 +102,6 @@ void usage()
     qout << "  -u        the webpage url\n";
     qout << "  -f        redirect the output to a file\n";
     qout << "  -j        use the Json format\n";
+    qout << "  -V        print the version\n";
     qout.flush();
 }

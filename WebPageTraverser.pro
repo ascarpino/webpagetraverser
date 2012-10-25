@@ -21,3 +21,4 @@ SOURCES += src/main.cpp \
 HEADERS += \
     src/webelement.h \
     src/pagetraverser.h
+
