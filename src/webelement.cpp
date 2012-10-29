@@ -60,28 +60,23 @@ QString WebElement::toString()
     return str;
 }
 
-QVariantList WebElement::toQVariant()
+QVariantMap WebElement::toQVariant()
 {
-    QVariantList qvariant;
     QVariantMap map;
 
     map.insert("ParentPath", this->m_parentPath);
     map.insert("NodeTag", this->m_nodetag);
 
-    QVariantList position;
-    QVariantMap pos_map;
-    pos_map.insert("top", this->m_position.top);
-    pos_map.insert("left", this->m_position.left);
-    pos_map.insert("right", this->m_position.right);
-    pos_map.insert("bottom", this->m_position.bottom);
-    position.append(pos_map);
+    QVariantMap position;
+    position.insert("top", this->m_position.top);
+    position.insert("left", this->m_position.left);
+    position.insert("right", this->m_position.right);
+    position.insert("bottom", this->m_position.bottom);
     map.insert("Position", position);
 
-    QVariantList size;
-    QVariantMap size_map;
-    size_map.insert("height", this->m_size.height);
-    size_map.insert("width", this->m_size.width);
-    size.append(size_map);
+    QVariantMap size;
+    size.insert("height", this->m_size.height);
+    size.insert("width", this->m_size.width);
     map.insert("Size", size);
 
     if (!this->m_attributes.isEmpty()) {
@@ -102,7 +97,5 @@ QVariantList WebElement::toQVariant()
         map.insert("Children", children);
     }
 
-    qvariant.append(map);
-
-    return qvariant;
+    return map;
 }

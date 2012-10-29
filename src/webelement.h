@@ -29,7 +29,7 @@ public:
     virtual ~WebElement();
     QList<WebElement *> *getChildren();
     QString toString();
-    QVariantList toQVariant();
+    QVariantMap toQVariant();
 
 private:
     QString m_parentPath;
