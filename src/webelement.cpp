@@ -64,29 +64,27 @@ QVariantMap WebElement::toQVariant()
 {
     QVariantMap map;
 
-    map.insert("ParentPath", this->m_parentPath);
-    map.insert("NodeTag", this->m_nodetag);
+    map.insert("parentPath", this->m_parentPath);
+    map.insert("nodeTag", this->m_nodetag);
 
     QVariantMap position;
     position.insert("top", this->m_position.top);
     position.insert("left", this->m_position.left);
     position.insert("right", this->m_position.right);
     position.insert("bottom", this->m_position.bottom);
-    map.insert("Position", position);
+    map.insert("position", position);
 
     QVariantMap size;
     size.insert("height", this->m_size.height);
     size.insert("width", this->m_size.width);
-    map.insert("Size", size);
+    map.insert("size", size);
 
     if (!this->m_attributes.isEmpty()) {
-        QVariantList attributes;
-        QVariantMap attr_map;
+        QVariantMap attributes;
         foreach (QString attr, this->m_attributes.keys()) {
-            attr_map.insert(attr, this->m_attributes.value(attr));
+            attributes.insert(attr, this->m_attributes.value(attr));
         }
-        attributes.append(attr_map);
-        map.insert("Attributes", attributes);
+        map.insert("attributes", attributes);
     }
 
     if (!this->m_children.isEmpty()) {
@@ -94,7 +92,7 @@ QVariantMap WebElement::toQVariant()
         foreach (WebElement *element, this->m_children) {
             children.append(element->toQVariant());
         }
-        map.insert("Children", children);
+        map.insert("children", children);
     }
 
     return map;
