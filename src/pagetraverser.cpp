@@ -6,6 +6,7 @@
 #include <QtCore/QTextStream>
 #include <QtCore/QUrl>
 #include <QtWebKit/QWebFrame>
+#include <QTextCodec>
 
 PageTraverser::PageTraverser(QObject *parent) :
     QObject(parent)
@@ -78,7 +79,8 @@ WebElement* PageTraverser::populateTree(const QString parentPath, const QWebElem
         }
     }
 
-    QString text = e.toPlainText().toUtf8();
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
+    QString text = e.toPlainText();
 
     //create the web Element
     WebElement* node = new WebElement(parentPath, e.tagName().toLower(), position, size, attributes, text);
