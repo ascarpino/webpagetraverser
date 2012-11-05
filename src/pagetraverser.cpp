@@ -47,7 +47,7 @@ void PageTraverser::extractElements()
     QWebElement head = doc.firstChild();
     QWebElement body = head.nextSibling();
 
-    root = populateTree("HTML", body);
+    root = populateTree("html", body);
 
     // we've done here
     emit fetched();
@@ -78,13 +78,15 @@ WebElement* PageTraverser::populateTree(const QString parentPath, const QWebElem
         }
     }
 
+    QString text = e.toPlainText().toUtf8();
+
     //create the web Element
-    WebElement* node = new WebElement(parentPath, e.tagName(), position, size, attributes);
+    WebElement* node = new WebElement(parentPath, e.tagName().toLower(), position, size, attributes, text);
 
     //for each child
     //lista dei figli add populateTree(figlio);
     for (QWebElement elem = e.firstChild(); !elem.isNull(); elem = elem.nextSibling()) {
-        node->getChildren()->append(populateTree(parentPath + "/" + e.tagName(), elem));
+        node->getChildren()->append(populateTree(parentPath + "/" + e.tagName().toLower(), elem));
     }
 
     return node;

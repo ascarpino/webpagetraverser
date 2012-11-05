@@ -25,7 +25,8 @@ class WebElement : public QObject
     Q_OBJECT
 public:
     explicit WebElement(QString parentPath, QString tagName, Position &position, Size &size,
-                        QHash<QString, QString> &attributes, QObject *parent = 0);
+                        QHash<QString, QString> &attributes, QString text,
+                        QObject *parent = 0);
     virtual ~WebElement();
     QList<WebElement *> *getChildren();
     QString toString();
@@ -37,7 +38,8 @@ private:
     Position m_position;
     Size m_size;
     QHash<QString, QString> m_attributes;
-    QList<WebElement *> m_children;   
+    QList<WebElement *> m_children;
+    QString m_text;
 };
 
 #endif // WEBELEMENT_H

@@ -7,13 +7,14 @@
 
 WebElement::WebElement(QString parentPath, QString nodeTag, Position &position,
                        Size &size, QHash<QString, QString> &attributes,
-                       QObject *parent)
+                       QString text, QObject *parent)
     : QObject(parent)
     , m_parentPath(parentPath)
     , m_nodetag(nodeTag)
     , m_position(position)
     , m_size(size)
     , m_attributes(attributes)
+    , m_text(text)
 {
 }
 
@@ -25,6 +26,7 @@ WebElement::~WebElement()
     delete &m_size;
     delete &m_attributes;
     delete &m_children;
+    delete &m_text;
 }
 
 QList<WebElement *>* WebElement::getChildren()
@@ -94,6 +96,8 @@ QVariantMap WebElement::toQVariant()
         }
         map.insert("children", children);
     }
+
+    map.insert("text", this->m_text);
 
     return map;
 }
