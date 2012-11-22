@@ -62,6 +62,7 @@ int main(int argc, char *argv[])
         QByteArray serialized;
         if (json) {
             QJson::Serializer serializer;
+            serializer.setIndentMode(QJson::IndentFull);
             serialized = serializer.serialize(root->toQVariant());
         }
 
