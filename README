@@ -3,8 +3,8 @@ WebPageTraverser is a tool to retrieve webelements information.
 It includes infos about the position.
 
 = Dependencies =
-* qt (http://qt-project.org/)
-* qjson (http://qjson.sourceforge.net/)
+* qt >= 4.8 (http://qt-project.org/)
+* qjson >= 0.8.0 (http://qjson.sourceforge.net/)
 
 = Installation =
 $ qmake

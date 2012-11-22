@@ -80,10 +80,9 @@ WebElement* PageTraverser::populateTree(const QString parentPath, const QWebElem
     }
 
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
-    QString text = e.toPlainText();
 
     //create the web Element
-    WebElement* node = new WebElement(parentPath, e.tagName().toLower(), position, size, attributes, text);
+    WebElement* node = new WebElement(parentPath, e.tagName().toLower(), position, size, attributes, e.toPlainText());
 
     //for each child
     //lista dei figli add populateTree(figlio);
