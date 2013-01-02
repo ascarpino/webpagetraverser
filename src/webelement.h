@@ -43,8 +43,4 @@ private:
     qint32 id;
     static qint32 next_id;
 };
-
-// static id to get an unique id for web elements
-qint32 WebElement::next_id = 0;
-
 #endif // WEBELEMENT_H

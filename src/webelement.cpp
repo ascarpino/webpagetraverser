@@ -5,6 +5,8 @@
 #include <QtCore/QStringList>
 #include <QtCore/QVariantMap>
 
+qint32 WebElement::next_id = 0;
+
 WebElement::WebElement(QString parentPath, QString nodeTag, Position &position,
                        Size &size, QHash<QString, QString> &attributes,
                        QString text, QObject *parent)
