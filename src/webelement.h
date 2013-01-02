@@ -40,6 +40,11 @@ private:
     QHash<QString, QString> m_attributes;
     QList<WebElement *> m_children;
     QString m_text;
+    qint32 id;
+    static qint32 next_id;
 };
+
+// static id to get an unique id for web elements
+qint32 WebElement::next_id = 0;
 
 #endif // WEBELEMENT_H

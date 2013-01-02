@@ -16,6 +16,7 @@ WebElement::WebElement(QString parentPath, QString nodeTag, Position &position,
     , m_attributes(attributes)
     , m_text(text)
 {
+    id = WebElement::next_id++;
 }
 
 WebElement::~WebElement()
@@ -38,7 +39,7 @@ QString WebElement::toString()
 {
     QString str;
 
-    str.append("Parent Path: " + this->m_parentPath + " Node Tag: " + this->m_nodetag + "\n");
+    str.append("Id: " + QString::number(this->id) + "Parent Path: " + this->m_parentPath + " Node Tag: " + this->m_nodetag + "\n");
     str.append(" Position: " + QString::number(this->m_position.top) + " " +
                QString::number(this->m_position.left) + " " +
                QString::number(this->m_position.right) + " " +
@@ -66,6 +67,7 @@ QVariantMap WebElement::toQVariant()
 {
     QVariantMap map;
 
+    map.insert("id", this->id);
     map.insert("parentPath", this->m_parentPath);
     map.insert("nodeTag", this->m_nodetag);
 
