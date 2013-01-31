@@ -79,7 +79,7 @@ WebElement* PageTraverser::populateTree(const QString parentPath, const QWebElem
         }
     }
 
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
     //create the web Element
     WebElement* node = new WebElement(parentPath, e.tagName().toLower(), position, size, attributes, e.toPlainText());
