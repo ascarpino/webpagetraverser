@@ -12,10 +12,22 @@
 *.la
 *.a
 
+# QT moc
+moc_*
+
+# QMake files
+Makefile
+
 # QtCreator user project file
 *.pro.user
+
+# KDevelop files
+*.kdev4
 
 # System files
 .DS_Store
 Thumbs.db
 .directory
+
+# Project files
+WebPageTraverser
