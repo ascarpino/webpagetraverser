@@ -5,8 +5,11 @@ It includes infos about the position.
 = Dependencies =
 * qt >= 4.8 (http://qt-project.org/)
 * qjson >= 0.8.0 (http://qjson.sourceforge.net/)
+* cmake >= 2.8 (http://www.cmake.org/)
 
-= Installation =
-$ qmake
+= Build and installation =
+$ mkdir build
+$ cd build
+$ cmake ../
 $ make
 # make install
