@@ -3,11 +3,11 @@ set(webpagetraverser_SRCS
     webelement.cpp
     pagetraverser.cpp)
 
-add_executable(webpagetraverser ${webpagetraverser_SRCS})
+add_executable(WebPageTraverser ${webpagetraverser_SRCS})
 
-target_link_libraries(webpagetraverser ${QT_QTCORE_LIBRARY}
+target_link_libraries(WebPageTraverser ${QT_QTCORE_LIBRARY}
                                        ${QT_QTGUI_LIBRARY}
                                        ${QT_QTWEBKIT_LIBRARY}
                                        ${QJSON_LIBRARIES})
 
-install(TARGETS webpagetraverser RUNTIME DESTINATION bin)
+install(TARGETS WebPageTraverser RUNTIME DESTINATION bin)
