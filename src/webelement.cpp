@@ -61,7 +61,7 @@ QString WebElement::toString()
 {
     QString str;
 
-    str.append("Id: " + QString::number(this->id) + "Parent Path: " + this->m_parentPath + " Node Tag: " + this->m_nodetag + "\n");
+    str.append("Id: " + QString::number(this->id) + " Parent Path: " + this->m_parentPath + " Node Tag: " + this->m_nodetag + "\n");
     str.append(" Position: " + QString::number(this->m_position.top) + " " +
                QString::number(this->m_position.left) + " " +
                QString::number(this->m_position.right) + " " +

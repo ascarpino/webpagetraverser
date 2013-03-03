@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
                 if (json)
                     out.write(serialized);
                 else
-                    out.write(serialized);
+                    out.write(root->toString().toUtf8());
                 out.close();
             }
 
