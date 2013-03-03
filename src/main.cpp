@@ -22,13 +22,12 @@
 
 // Qt headers
 #include <QApplication>
-#include <QtCore/QByteArray>
-#include <QtCore/QFile>
-#include <QtCore/QString>
-#include <QtCore/QTextStream>
-
-// QJson headers
-#include <qjson/serializer.h>
+#include <QByteArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QFile>
+#include <QString>
+#include <QTextStream>
 
 void usage();
 
@@ -80,9 +79,7 @@ int main(int argc, char *argv[])
 
         QByteArray serialized;
         if (json) {
-            QJson::Serializer serializer;
-            serializer.setIndentMode(QJson::IndentFull);
-            serialized = serializer.serialize(root->toQVariant());
+           serialized = QJsonDocument::fromVariant(root->toQVariant()).toJson();
         }
 
         if (!fileName.isEmpty()) {

@@ -24,10 +24,10 @@
 #include "webelement.h"
 
 // Qt headers
-#include <QtCore/QEventLoop>
-#include <QtCore/QObject>
-#include <QtWebKit/QWebElement>
-#include <QtWebKit/QWebPage>
+#include <QEventLoop>
+#include <QObject>
+#include <QWebElement>
+#include <QWebPage>
 
 class PageTraverser : public QObject
 {

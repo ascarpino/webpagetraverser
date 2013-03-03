@@ -6,10 +6,14 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt4 REQUIRED)
-find_package(QJSON REQUIRED)
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5WebKit REQUIRED)
+find_package(Qt5WebKitWidgets REQUIRED)
 
-include_directories(${QT_INCLUDES}
-                    ${QJSON_INCLUDE_DIR})
+include_directories(${Qt5Core_INCLUDE_DIRS}
+                    ${Qt5Widgets_INCLUDE_DIRS}
+                    ${Qt5WebKit_INCLUDE_DIRS}
+                    ${Qt5WebKitWidgets_INCLUDE_DIRS})
 
 add_subdirectory(src)

@@ -21,11 +21,11 @@
 #include "pagetraverser.h"
 
 // Qt headers
-#include <QtCore/QQueue>
-#include <QtCore/QTextStream>
-#include <QtCore/QUrl>
-#include <QtWebKit/QWebFrame>
+#include <QQueue>
 #include <QTextCodec>
+#include <QTextStream>
+#include <QUrl>
+#include <QWebFrame>
 
 PageTraverser::PageTraverser(QObject *parent) :
     QObject(parent)
@@ -98,7 +98,7 @@ WebElement* PageTraverser::populateTree(const QString parentPath, const QWebElem
         }
     }
 
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
 
     //create the web Element
     WebElement* node = new WebElement(parentPath, e.tagName().toLower(), position, size, attributes, e.toPlainText());

@@ -22,11 +22,11 @@
 #define WEBELEMENT_H
 
 // Qt headers
-#include <QtCore/QHash>
-#include <QtCore/QList>
-#include <QtCore/QObject>
-#include <QtCore/QString>
-#include <QtCore/QVariant>
+#include <QHash>
+#include <QList>
+#include <QObject>
+#include <QString>
+#include <QVariant>
 
 struct Position {
     qint16 top;

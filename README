@@ -1,11 +1,10 @@
 
-WebPageTraverser is a tool to retrieve webelements information.
-It includes infos about the position.
+WebPageTraverser is a tool to retrieve information about the HTML elements in a web page.
+It includes info about the position, the text, the size and more.
 
 = Dependencies =
-* qt >= 4.8 (http://qt-project.org/)
-* qjson >= 0.8.0 (http://qjson.sourceforge.net/)
-* cmake >= 2.8 (http://www.cmake.org/)
+* qt >= 5.0 (http://qt-project.org/)
+* cmake >= 2.8.8 (http://www.cmake.org/)
 
 = Build and installation =
 $ mkdir build
