@@ -42,13 +42,13 @@ private:
     QEventLoop *loop;
     WebElement *root;
 
-    WebElement* populateTree(const QString parentPath, const QWebElement &e);
-    
-signals:
+    WebElement *populateTree(const QString &parentPath, const QWebElement &e);
+
+Q_SIGNALS:
     void fetched();
 
-public slots:
-    void extractElements();    
+public Q_SLOTS:
+    void extractElements();
 };
 
 #endif // PAGETRAVERSER_H

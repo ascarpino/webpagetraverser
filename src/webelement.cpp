@@ -27,9 +27,10 @@
 
 qint32 WebElement::next_id = 0;
 
-WebElement::WebElement(QString parentPath, QString nodeTag, Position &position,
-                       Size &size, QHash<QString, QString> &attributes,
-                       QString text, QObject *parent)
+WebElement::WebElement(const QString &parentPath, const QString &nodeTag,
+                       const Position &position, const Size &size,
+                       const QHash<QString, QString> attributes,
+                       const QString &text, QObject *parent)
     : QObject(parent)
     , m_parentPath(parentPath)
     , m_nodetag(nodeTag)
@@ -43,16 +44,9 @@ WebElement::WebElement(QString parentPath, QString nodeTag, Position &position,
 
 WebElement::~WebElement()
 {
-    delete &m_parentPath;
-    delete &m_nodetag;
-    delete &m_position;
-    delete &m_size;
-    delete &m_attributes;
-    delete &m_children;
-    delete &m_text;
 }
 
-QList<WebElement *>* WebElement::getChildren()
+QList<WebElement *> *WebElement::getChildren()
 {
     return &m_children;
 }
@@ -61,24 +55,24 @@ QString WebElement::toString()
 {
     QString str;
 
-    str.append("Id: " + QString::number(this->id) + " Parent Path: " + this->m_parentPath + " Node Tag: " + this->m_nodetag + "\n");
-    str.append(" Position: " + QString::number(this->m_position.top) + " " +
-               QString::number(this->m_position.left) + " " +
-               QString::number(this->m_position.right) + " " +
-               QString::number(this->m_position.bottom) + "\n");
-    str.append(" Size: " + QString::number(this->m_size.height) + " " + QString::number(this->m_size.width) + "\n");
+    str.append("Id: " + QString::number(id) + " Parent Path: " + m_parentPath + " Node Tag: " + m_nodetag + "\n");
+    str.append(" Position: " + QString::number(m_position.top) + " " +
+               QString::number(m_position.left) + " " +
+               QString::number(m_position.right) + " " +
+               QString::number(m_position.bottom) + "\n");
+    str.append(" Size: " + QString::number(m_size.height) + " " + QString::number(m_size.width) + "\n");
 
-    if (!this->m_attributes.isEmpty()) {
+    if (!m_attributes.isEmpty()) {
         str.append(" Attributes: ");
-        foreach (QString attr, this->m_attributes.keys()) {
-            str.append(" " + attr + " = \"" + this->m_attributes.value(attr) + "\"");
+        Q_FOREACH (const QString &attr, m_attributes.keys()) {
+            str.append(" " + attr + " = \"" + m_attributes.value(attr) + "\"");
         }
     }
 
-    if (!this->m_children.isEmpty()) {
-        str.append("\tInnerList: (size: " + QString::number(this->m_children.count()) + ")\n");
-        foreach (WebElement *element, this->m_children) {
-                str.append("\t" + element->toString() + "\n");
+    if (!m_children.isEmpty()) {
+        str.append("\tInnerList: (size: " + QString::number(m_children.count()) + ")\n");
+        Q_FOREACH (WebElement *element, m_children) {
+            str.append("\t" + element->toString() + "\n");
         }
     }
 
@@ -89,39 +83,39 @@ QVariantMap WebElement::toQVariant()
 {
     QVariantMap map;
 
-    map.insert("id", this->id);
-    map.insert("parentPath", this->m_parentPath);
-    map.insert("nodeTag", this->m_nodetag);
+    map.insert("id", id);
+    map.insert("parentPath", m_parentPath);
+    map.insert("nodeTag", m_nodetag);
 
     QVariantMap position;
-    position.insert("top", this->m_position.top);
-    position.insert("left", this->m_position.left);
-    position.insert("right", this->m_position.right);
-    position.insert("bottom", this->m_position.bottom);
+    position.insert("top", m_position.top);
+    position.insert("left", m_position.left);
+    position.insert("right", m_position.right);
+    position.insert("bottom", m_position.bottom);
     map.insert("position", position);
 
     QVariantMap size;
-    size.insert("height", this->m_size.height);
-    size.insert("width", this->m_size.width);
+    size.insert("height", m_size.height);
+    size.insert("width", m_size.width);
     map.insert("size", size);
 
-    if (!this->m_attributes.isEmpty()) {
+    if (!m_attributes.isEmpty()) {
         QVariantMap attributes;
-        foreach (QString attr, this->m_attributes.keys()) {
-            attributes.insert(attr, this->m_attributes.value(attr));
+        Q_FOREACH (const QString &attr, m_attributes.keys()) {
+            attributes.insert(attr, m_attributes.value(attr));
         }
         map.insert("attributes", attributes);
     }
 
-    if (!this->m_children.isEmpty()) {
+    if (!m_children.isEmpty()) {
         QVariantList children;
-        foreach (WebElement *element, this->m_children) {
+        Q_FOREACH (WebElement *element, m_children) {
             children.append(element->toQVariant());
         }
         map.insert("children", children);
     }
 
-    map.insert("text", this->m_text);
+    map.insert("text", m_text);
 
     return map;
 }

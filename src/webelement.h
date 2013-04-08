@@ -43,10 +43,12 @@ struct Size {
 class WebElement : public QObject
 {
     Q_OBJECT
+
 public:
-    explicit WebElement(QString parentPath, QString tagName, Position &position, Size &size,
-                        QHash<QString, QString> &attributes, QString text,
-                        QObject *parent = 0);
+    explicit WebElement(const QString &parentPath, const QString &tagName,
+                        const Position &position, const Size &size,
+                        const QHash<QString, QString> attributes,
+                        const QString &text, QObject *parent = 0);
     virtual ~WebElement();
     QList<WebElement *> *getChildren();
     QString toString();

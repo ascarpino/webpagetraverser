@@ -39,9 +39,9 @@ PageTraverser::PageTraverser(QObject *parent) :
 
 PageTraverser::~PageTraverser()
 {
-    delete &page;
-    delete &loop;
-    delete &root;
+    delete page;
+    delete loop;
+    delete root;
 }
 
 WebElement* PageTraverser::traverse(const QString &url)
@@ -73,7 +73,7 @@ void PageTraverser::extractElements()
     emit fetched();
 }
 
-WebElement* PageTraverser::populateTree(const QString parentPath, const QWebElement &e)
+WebElement* PageTraverser::populateTree(const QString &parentPath, const QWebElement &e)
 {
     //parent path
     QString path = parentPath;
@@ -101,12 +101,14 @@ WebElement* PageTraverser::populateTree(const QString parentPath, const QWebElem
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
 
     //create the web Element
-    WebElement* node = new WebElement(parentPath, e.tagName().toLower(), position, size, attributes, e.toPlainText());
+    WebElement* node = new WebElement(parentPath, e.tagName().toLower(),
+                                      position, size, attributes, e.toPlainText());
 
     //for each child
     //lista dei figli add populateTree(figlio);
     for (QWebElement elem = e.firstChild(); !elem.isNull(); elem = elem.nextSibling()) {
-        node->getChildren()->append(populateTree(parentPath + "/" + e.tagName().toLower(), elem));
+        node->getChildren()->append(populateTree(parentPath + "/" + e.tagName().toLower(),
+                                                 elem));
     }
 
     return node;
