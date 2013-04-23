@@ -37,23 +37,34 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    appPath = a.arguments().first();
+    QStringList arguments = a.arguments();
+    appPath = arguments.first();
 
     QString url, fileName;
     double version = 1.00;
     bool json = false;
 
-    if (a.arguments().size() > 1) {
+    if (arguments.size() > 1) {
         QTextStream qout(stdout);
 
-        foreach(QString arg, a.arguments()) {
+        foreach(QString arg, arguments.mid(1, arguments.size())) {
             if (arg == "-u") {
-                url = a.arguments().at(a.arguments().indexOf(arg) + 1);
+                int pos = arguments.indexOf(arg);
+
+                // No file name have been specified
+                if (pos != arguments.size() - 1) {
+                    url = arguments.at(pos + 1);
+                }
                 continue;
             }
 
             if (arg == "-f") {
-                fileName = a.arguments().at(a.arguments().indexOf(arg) + 1);
+                int pos = arguments.indexOf(arg);
+
+                // No file name have been specified
+                if (pos != arguments.size() - 1) {
+                    fileName = arguments.at(pos + 1);
+                }
                 continue;
             }
 
@@ -64,14 +75,19 @@ int main(int argc, char *argv[])
 
             if (arg == "-h") {
                 usage();
-                a.quit();
+                exit(0);
             }
 
             if (arg == "-V") {
                 qout << "Version: " << QString::number(version, 'f', 2) << "\n";
                 qout.flush();
-                a.quit();
+                exit(0);
             }
+        }
+
+        if (url.isEmpty()) {
+            usage();
+            exit(1);
         }
 
         PageTraverser* traverser = new PageTraverser();
@@ -86,27 +102,29 @@ int main(int argc, char *argv[])
             QFile out(fileName);
 
             if (out.open(QIODevice::WriteOnly)) {
-                if (json)
+                if (json) {
                     out.write(serialized);
-                else
+                } else {
                     out.write(root->toString().toUtf8());
+                }
                 out.close();
             }
 
             qout << fileName << " written.\n";
             qout.flush();
         } else {
-            if (json)
+            if (json) {
                 qout << serialized;
-            else
+            } else {
                 qout << root->toString();
+            }
             qout.flush();
         }
 
-        a.quit();
+        exit(0);
     } else {
         usage();
-        a.exit(1);
+        exit(1);
     }
 }
 
