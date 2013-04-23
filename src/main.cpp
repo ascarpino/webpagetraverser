@@ -18,6 +18,7 @@
  */
 
 // our headers
+#include "webpagetraverser.h"
 #include "pagetraverser.h"
 
 // Qt headers
@@ -41,7 +42,6 @@ int main(int argc, char *argv[])
     appPath = arguments.first();
 
     QString url, fileName;
-    double version = 1.00;
     bool json = false;
 
     if (arguments.size() > 1) {
@@ -79,9 +79,10 @@ int main(int argc, char *argv[])
             }
 
             if (arg == "-V") {
-                qout << "Version: " << QString::number(version, 'f', 2) << "\n";
-                qout.flush();
-                exit(0);
+                qout << "Version: " <<
+                WebPageTraverser_VERSION_MAJOR << "." <<
+                WebPageTraverser_VERSION_MAJOR << "\n";
+                qout.flush(); exit(0);
             }
         }
 
