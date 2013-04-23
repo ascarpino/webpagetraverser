@@ -24,7 +24,6 @@
 // Qt headers
 #include <QHash>
 #include <QList>
-#include <QObject>
 #include <QString>
 #include <QVariant>
 

@@ -19,7 +19,7 @@ moc_*
 Makefile
 
 # QtCreator user project file
-*.pro.user
+*.user
 
 # KDevelop files
 *.kdev4

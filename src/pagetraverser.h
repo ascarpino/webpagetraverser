@@ -25,7 +25,6 @@
 
 // Qt headers
 #include <QEventLoop>
-#include <QObject>
 #include <QWebElement>
 #include <QWebPage>
 
