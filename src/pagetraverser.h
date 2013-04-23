@@ -34,14 +34,14 @@ class PageTraverser : public QObject
 public:
     explicit PageTraverser(QObject *parent = 0);
     virtual ~PageTraverser();
-    WebElement* traverse(const QString &url);
+    WebElement *traverse(const QString &url);
 
 private:
-    QWebPage *page;
-    QEventLoop *loop;
+    QWebPage page;
+    QEventLoop loop;
     WebElement *root;
 
-    WebElement *populateTree(const QString &parentPath, const QWebElement &e);
+    WebElement *populateTree(const QString &parentPath, const QWebElement &element);
 
 Q_SIGNALS:
     void fetched();

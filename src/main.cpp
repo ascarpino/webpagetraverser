@@ -91,8 +91,8 @@ int main(int argc, char *argv[])
             exit(1);
         }
 
-        PageTraverser* traverser = new PageTraverser();
-        WebElement* root = traverser->traverse(url);
+        PageTraverser *traverser = new PageTraverser();
+        WebElement *root = traverser->traverse(url);
 
         QByteArray serialized;
         if (json) {
