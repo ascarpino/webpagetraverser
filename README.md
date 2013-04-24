@@ -10,8 +10,8 @@ It includes info about the position, the text, the size and more.
 
 Dependencies
 ------------
-* qt >= 5.0 (http://qt-project.org/)
-* cmake >= 2.8.8 (http://www.cmake.org/)
+* qt &rt;= 5.0 (http://qt-project.org/)
+* cmake &rt;= 2.8.8 (http://www.cmake.org/)
 
 Build and installation
 ----------------------
@@ -19,7 +19,7 @@ Build and installation
 - $ cd build
 - $ cmake ../
 - $ make
-- # make install
+- \# make install
 
 License
 -------
