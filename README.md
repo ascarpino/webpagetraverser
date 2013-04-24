@@ -15,11 +15,11 @@ Dependencies
 
 Build and installation
 ----------------------
-- $ mkdir build
-- $ cd build
-- $ cmake ../
-- $ make
-- \# make install
+1. $ mkdir build
+2. $ cd build
+3. $ cmake ../
+4. $ make
+5. \# make install
 
 License
 -------
