@@ -26,6 +26,8 @@
 #include <QByteArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QDir>
+#include <QFileInfo>
 #include <QFile>
 #include <QString>
 #include <QTextStream>
@@ -100,8 +102,11 @@ int main(int argc, char *argv[])
         }
 
         if (!fileName.isEmpty()) {
-            QFile out(fileName);
+            QFileInfo file(fileName);
+            QDir dir;
+            dir.mkpath(file.absolutePath());
 
+            QFile out(fileName);
             if (out.open(QIODevice::WriteOnly)) {
                 if (json) {
                     out.write(serialized);
@@ -111,7 +116,11 @@ int main(int argc, char *argv[])
                 out.close();
             }
 
-            qout << fileName << " written.\n";
+            if (out.exists()) {
+                qout << fileName << " written.\n";
+            } else {
+                qout << "Something went wrong writing" << fileName << ".\n";
+            }
             qout.flush();
         } else {
             if (json) {
