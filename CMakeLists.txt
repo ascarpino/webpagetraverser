@@ -7,7 +7,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 set(WebPageTraverser_VERSION_MAJOR 1)
-set(WebPageTraverser_VERSION_MINOR 1)
+set(WebPageTraverser_VERSION_MINOR 2)
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)

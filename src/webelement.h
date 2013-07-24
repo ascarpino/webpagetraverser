@@ -61,7 +61,7 @@ private:
     QHash<QString, QString> m_attributes;
     QList<WebElement *> m_children;
     QString m_text;
-    qint32 id;
+    qint32 webPageTraverserId;
     static qint32 next_id;
 };
 #endif // WEBELEMENT_H

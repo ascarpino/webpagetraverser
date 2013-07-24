@@ -39,7 +39,7 @@ WebElement::WebElement(const QString &parentPath, const QString &nodeTag,
     , m_attributes(attributes)
     , m_text(text)
 {
-    id = WebElement::next_id++;
+    webPageTraverserId = WebElement::next_id++;
 }
 
 WebElement::~WebElement()
@@ -55,7 +55,8 @@ QString WebElement::toString()
 {
     QString str;
 
-    str.append("Id: " + QString::number(id) + " Parent Path: " + m_parentPath + " Node Tag: " + m_nodetag + "\n");
+    str.append("webPageTraverserId: " + QString::number(webPageTraverserId) +
+               " Parent Path: " + m_parentPath + " Node Tag: " + m_nodetag + "\n");
     str.append(" Position: " + QString::number(m_position.top) + " " +
                QString::number(m_position.left) + " " +
                QString::number(m_position.right) + " " +
@@ -83,7 +84,7 @@ QVariantMap WebElement::toQVariant()
 {
     QVariantMap map;
 
-    map.insert("id", id);
+    map.insert("webPageTraverserId", webPageTraverserId);
     map.insert("parentPath", m_parentPath);
     map.insert("nodeTag", m_nodetag);
 
