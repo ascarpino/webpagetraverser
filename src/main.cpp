@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
     if (arguments.size() > 1) {
         QTextStream qout(stdout);
 
-        foreach(QString arg, arguments.mid(1, arguments.size())) {
+        Q_FOREACH(const QString arg, arguments.mid(1, arguments.size())) {
             if (arg == "-u") {
                 int pos = arguments.indexOf(arg);
 

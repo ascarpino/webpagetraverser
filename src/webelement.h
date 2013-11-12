@@ -49,7 +49,7 @@ public:
                         const QHash<QString, QString> attributes,
                         const QString &text, QObject *parent = 0);
     virtual ~WebElement();
-    QList<WebElement *> *getChildren();
+    QList<WebElement *>* getChildren();
     QString toString();
     QVariantMap toQVariant();
 

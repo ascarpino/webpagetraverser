@@ -46,7 +46,7 @@ WebElement::~WebElement()
 {
 }
 
-QList<WebElement *> *WebElement::getChildren()
+QList<WebElement *>* WebElement::getChildren()
 {
     return &m_children;
 }

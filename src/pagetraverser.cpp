@@ -86,7 +86,7 @@ WebElement* PageTraverser::populateTree(const QString &parentPath, const QWebEle
 
     //attributes
     QHash<QString, QString> attributes;
-    foreach (QString attr, element.attributeNames()) {
+    Q_FOREACH (const QString attr, element.attributeNames()) {
         attributes.insert(attr, element.attribute(attr));
     }
 

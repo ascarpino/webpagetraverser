@@ -41,7 +41,7 @@ private:
     QEventLoop loop;
     WebElement *root;
 
-    WebElement *populateTree(const QString &parentPath, const QWebElement &element);
+    WebElement* populateTree(const QString &parentPath, const QWebElement &element);
 
 Q_SIGNALS:
     void fetched();
