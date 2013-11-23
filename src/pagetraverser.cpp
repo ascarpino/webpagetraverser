@@ -21,9 +21,7 @@
 #include "pagetraverser.h"
 
 // Qt headers
-#include <QQueue>
 #include <QTextCodec>
-#include <QTextStream>
 #include <QUrl>
 #include <QWebFrame>
 

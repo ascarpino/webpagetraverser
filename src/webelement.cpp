@@ -22,7 +22,6 @@
 #include "webelement.h"
 
 // Qt headers
-#include <QStringList>
 #include <QVariantMap>
 
 qint32 WebElement::next_id = 0;

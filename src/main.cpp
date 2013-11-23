@@ -25,11 +25,9 @@
 #include <QApplication>
 #include <QByteArray>
 #include <QJsonDocument>
-#include <QJsonObject>
 #include <QDir>
 #include <QFileInfo>
 #include <QFile>
-#include <QString>
 #include <QTextStream>
 
 void usage();
@@ -46,7 +44,7 @@ int main(int argc, char *argv[])
     if (arguments.size() > 1) {
         QTextStream qout(stdout);
 
-        Q_FOREACH(const QString arg, arguments.mid(1, arguments.size())) {
+        Q_FOREACH (const QString arg, arguments.mid(1, arguments.size())) {
             if (arg == "-u") {
                 int pos = arguments.indexOf(arg);
 

@@ -24,7 +24,6 @@
 // Qt headers
 #include <QHash>
 #include <QList>
-#include <QString>
 #include <QVariant>
 
 struct Position {
