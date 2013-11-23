@@ -34,14 +34,11 @@
 
 void usage();
 
-QString appPath;
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
     QStringList arguments = a.arguments();
-    appPath = arguments.first();
 
     QString url, fileName;
     bool json = false;
@@ -141,7 +138,7 @@ int main(int argc, char *argv[])
 void usage()
 {
     QTextStream qout(stdout);
-    qout << "Usage: " << appPath << " -u <url> [-f <filename>] [-j]\n";
+    qout << "Usage: " << QApplication::applicationName() << " -u <url> [-f <filename>] [-j]\n";
     qout << "\n";
     qout << "Options:\n";
     qout << "  -u        the webpage url\n";
