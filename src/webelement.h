@@ -1,7 +1,7 @@
 /*
  *   This file is part of WebPageTraverser.
  * 
- *   Copyright 2012-2013 Andrea Scarpino <andrea@archlinux.org>
+ *   Copyright 2012-2013 Andrea Scarpino <me@andreascarpino.it>
  *   Copyright 2012-2013 Fabio Fumarola <fabiofumarola@gmail.com>
  *
  *   WebPageTraverser is free software: you can redistribute it and/or modify

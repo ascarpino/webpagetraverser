@@ -1,7 +1,7 @@
 /*
  *   This file is part of WebPageTraverser.
  * 
- *   Copyright 2012-2013 Andrea Scarpino <andrea@archlinux.org>
+ *   Copyright 2012-2013 Andrea Scarpino <me@andreascarpino.it>
  *   Copyright 2012-2013 Fabio Fumarola <fabiofumarola@gmail.com>
  *
  *   WebPageTraverser is free software: you can redistribute it and/or modify
@@ -82,7 +82,6 @@ QString WebElement::toString()
 QVariantMap WebElement::toQVariant()
 {
     QVariantMap map;
-
     map.insert("webPageTraverserId", webPageTraverserId);
     map.insert("parentPath", m_parentPath);
     map.insert("nodeTag", m_nodetag);

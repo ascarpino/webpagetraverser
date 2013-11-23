@@ -1,7 +1,7 @@
 /*
  *   This file is part of WebPageTraverser.
  * 
- *   Copyright 2012-2013 Andrea Scarpino <andrea@archlinux.org>
+ *   Copyright 2012-2013 Andrea Scarpino <me@andreascarpino.it>
  *
  *   WebPageTraverser is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -58,9 +58,9 @@ void PageTraverser::extractElements()
 //     qout.flush();
 
     QWebFrame *frame = page.mainFrame();
-    QWebElement doc(frame->documentElement());
-    QWebElement head(doc.firstChild());
-    QWebElement body(head.nextSibling());
+    const QWebElement doc(frame->documentElement());
+    const QWebElement head(doc.firstChild());
+    const QWebElement body(head.nextSibling());
 
     root = populateTree("html", body);
 
