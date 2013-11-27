@@ -1,33 +1,6 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-
-# QT moc
-moc_*
-
-# QMake files
-Makefile
-
-# QtCreator user project file
 *.user
-
-# KDevelop files
 *.kdev4
-
-# System files
 .DS_Store
 Thumbs.db
 .directory
-
-# Project files
-WebPageTraverser
+build
