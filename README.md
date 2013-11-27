@@ -3,7 +3,7 @@ WebPageTraverser
 
 Description
 -----------
-WebPageTraverser is a tool to retrieve information about the HTML elements in a 
+WebPageTraverser is a Qt tool to retrieve information about HTML elements in a
 web page.
 
 It includes info about the position, the text, the size and more.
@@ -23,4 +23,4 @@ Build and installation
 
 License
 -------
-GPL3
+LGPL3
