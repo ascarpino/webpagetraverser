@@ -21,6 +21,15 @@ Build and installation
 4. $ make
 5. \# make install
 
+Potential Errors
+--------------------
+1. if does not find the path to QT5 add it using the -DCMAKE_PREFIX_PATH variable
+
+```
+$cmake -DCMAKE_PREFIX_PATH=/Users/username/Qt/5.3/clang_64/
+
+```
+
 License
 -------
 LGPL3
