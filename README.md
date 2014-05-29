@@ -22,12 +22,11 @@ Build and installation
 5. \# make install
 
 Potential Errors
---------------------
-1. if does not find the path to QT5 add it using the -DCMAKE_PREFIX_PATH variable
+----------------
+* If CMake does not find the path to your Qt 5 instalation, then set the *-DCMAKE_PREFIX_PATH* option to that path:
 
 ```
-$cmake -DCMAKE_PREFIX_PATH=/Users/username/Qt/5.3/clang_64/
-
+$ cmake -DCMAKE_PREFIX_PATH=/Users/username/Qt/5.3/clang_64/
 ```
 
 License
