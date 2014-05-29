@@ -43,6 +43,8 @@ int main(int argc, char *argv[])
     bool json = false;
 
     if (arguments.size() > 1) {
+        QTextStream qout(stdout);
+
         Q_FOREACH (const QString arg, arguments.mid(1, arguments.size())) {
             if (arg == "-u") {
                 int pos = arguments.indexOf(arg);
@@ -75,9 +77,10 @@ int main(int argc, char *argv[])
             }
 
             if (arg == "-V") {
-                qDebug() << "Version: " <<
-                            WebPageTraverser_VERSION_MAJOR << "." <<
-                            WebPageTraverser_VERSION_MINOR;
+                qout << "Version: " <<
+                        WebPageTraverser_VERSION_MAJOR << "." <<
+                        WebPageTraverser_VERSION_MINOR << "\n";
+                qout.flush();
                 exit(0);
             }
         }
@@ -117,7 +120,6 @@ int main(int argc, char *argv[])
                 exit(1);
             }
         } else {
-            QTextStream qout(stdout);
             if (json) {
                 qout << serialized;
             } else {
