@@ -47,7 +47,8 @@ Q_SIGNALS:
     void fetched();
 
 public Q_SLOTS:
-    void extractElements();
+    void extractElements(bool ok);
+    void httpResponse(QNetworkReply *reply);
 };
 
 #endif // PAGETRAVERSER_H

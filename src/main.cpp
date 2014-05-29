@@ -29,6 +29,7 @@
 #include <QFileInfo>
 #include <QFile>
 #include <QTextStream>
+#include <QDebug>
 
 void usage();
 
@@ -42,8 +43,6 @@ int main(int argc, char *argv[])
     bool json = false;
 
     if (arguments.size() > 1) {
-        QTextStream qout(stdout);
-
         Q_FOREACH (const QString arg, arguments.mid(1, arguments.size())) {
             if (arg == "-u") {
                 int pos = arguments.indexOf(arg);
@@ -76,10 +75,10 @@ int main(int argc, char *argv[])
             }
 
             if (arg == "-V") {
-                qout << "Version: " <<
-                WebPageTraverser_VERSION_MAJOR << "." <<
-                WebPageTraverser_VERSION_MINOR << "\n";
-                qout.flush(); exit(0);
+                qDebug() << "Version: " <<
+                            WebPageTraverser_VERSION_MAJOR << "." <<
+                            WebPageTraverser_VERSION_MINOR;
+                exit(0);
             }
         }
 
@@ -112,12 +111,13 @@ int main(int argc, char *argv[])
             }
 
             if (out.exists()) {
-                qout << fileName << " written.\n";
+                qDebug() << fileName << " written.";
             } else {
-                qout << "Something went wrong writing" << fileName << ".\n";
+                qCritical() << "Something went wrong writing" << fileName << ".";
+                exit(1);
             }
-            qout.flush();
         } else {
+            QTextStream qout(stdout);
             if (json) {
                 qout << serialized;
             } else {

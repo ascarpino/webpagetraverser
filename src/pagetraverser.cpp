@@ -24,13 +24,16 @@
 #include <QTextCodec>
 #include <QUrl>
 #include <QWebFrame>
+#include <QNetworkReply>
 
 PageTraverser::PageTraverser(QObject *parent) :
     QObject(parent),
     page(new QWebPage()),
     loop(new QEventLoop())
 {
-    connect(&page, SIGNAL(loadFinished(bool)), this, SLOT(extractElements()));
+    connect(&page, SIGNAL(loadFinished(bool)), this, SLOT(extractElements(bool)));
+    connect(page.networkAccessManager(), SIGNAL(finished(QNetworkReply *)),
+            this, SLOT(httpResponse(QNetworkReply *)));
     connect(this, SIGNAL(fetched()), &loop, SLOT(quit()));
 }
 
@@ -51,21 +54,41 @@ WebElement* PageTraverser::traverse(const QString &url)
     return root;
 }
 
-void PageTraverser::extractElements()
+void PageTraverser::extractElements(bool ok)
 {
-//     QTextStream qout(stdout);
-//     qout << "Loaded webpage: " << page->mainFrame()->url().toString() << "\n";
-//     qout.flush();
+    //qDebug() << "Loaded webpage: " << page.mainFrame()->url().toString() << "\n";3
 
     QWebFrame *frame = page.mainFrame();
-    const QWebElement doc(frame->documentElement());
-    const QWebElement head(doc.firstChild());
-    const QWebElement body(head.nextSibling());
+    if (ok) {
+        const QWebElement doc(frame->documentElement());
+        const QWebElement head(doc.firstChild());
+        const QWebElement body(head.nextSibling());
 
-    root = populateTree("html", body);
+        root = populateTree("html", body);
+    }
 
     // we've done here
     emit fetched();
+}
+
+void PageTraverser::httpResponse(QNetworkReply *reply)
+{
+    switch (reply->error()) {
+    case QNetworkReply::NoError:
+        return;
+    case QNetworkReply::ContentNotFoundError:
+        qCritical() << "Got a bad HTTP status code: " <<
+                       reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        exit(1);
+        break;
+    case QNetworkReply::TimeoutError:
+        qCritical() << "Request timeout.";
+        exit(1);
+        break;
+    default:
+        qCritical() << "Got an error during request.";
+        exit(1);
+    }
 }
 
 WebElement* PageTraverser::populateTree(const QString &parentPath, const QWebElement &element)
