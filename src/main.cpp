@@ -77,9 +77,7 @@ int main(int argc, char *argv[])
             }
 
             if (arg == "-V") {
-                qout << "Version: " <<
-                        WebPageTraverser_VERSION_MAJOR << "." <<
-                        WebPageTraverser_VERSION_MINOR << "\n";
+                qout << "Version: " << WebPageTraverser_VERSION_STRING << "\n";
                 qout.flush();
                 exit(0);
             }

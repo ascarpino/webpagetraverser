@@ -22,5 +22,6 @@
 
 #define WebPageTraverser_VERSION_MAJOR @WebPageTraverser_VERSION_MAJOR@
 #define WebPageTraverser_VERSION_MINOR @WebPageTraverser_VERSION_MINOR@
+#define WebPageTraverser_VERSION_STRING @WebPageTraverser_VERSION_STRING@
 
 #endif // WEBPAGETRAVERSER_H
