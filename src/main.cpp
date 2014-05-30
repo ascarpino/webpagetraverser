@@ -29,119 +29,78 @@
 #include <QFileInfo>
 #include <QFile>
 #include <QTextStream>
+#include <QCommandLineParser>
 #include <QDebug>
-
-void usage();
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setApplicationName("WebPageTraverser");
+    a.setApplicationVersion(QString::number(WebPageTraverser_VERSION_STRING));
 
-    QStringList arguments = a.arguments();
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    parser.addVersionOption();
+    parser.addPositionalArgument("url", "Webpage URL.");
 
-    QString url, fileName;
-    bool json = false;
+    QCommandLineOption destFileName("f", "Redirect the output to a file.");
+    parser.addOption(destFileName);
 
-    if (arguments.size() > 1) {
-        QTextStream qout(stdout);
+    QCommandLineOption useJson("j", "Use JSON output instead of plain text.");
+    parser.addOption(useJson);
 
-        Q_FOREACH (const QString arg, arguments.mid(1, arguments.size())) {
-            if (arg == "-u") {
-                int pos = arguments.indexOf(arg);
+    parser.process(a);
 
-                // No file name have been specified
-                if (pos != arguments.size() - 1) {
-                    url = arguments.at(pos + 1);
-                }
-                continue;
-            }
-
-            if (arg == "-f") {
-                int pos = arguments.indexOf(arg);
-
-                // No file name have been specified
-                if (pos != arguments.size() - 1) {
-                    fileName = arguments.at(pos + 1);
-                }
-                continue;
-            }
-
-            if (arg == "-j") {
-                json = true;
-                continue;
-            }
-
-            if (arg == "-h") {
-                usage();
-                exit(0);
-            }
-
-            if (arg == "-V") {
-                qout << "Version: " << WebPageTraverser_VERSION_STRING << "\n";
-                qout.flush();
-                exit(0);
-            }
-        }
-
-        if (url.isEmpty()) {
-            usage();
-            exit(1);
-        }
-
-        PageTraverser *traverser = new PageTraverser();
-        WebElement *root = traverser->traverse(url);
-
-        QByteArray serialized;
-        if (json) {
-           serialized = QJsonDocument::fromVariant(root->toQVariant()).toJson();
-        }
-
-        if (!fileName.isEmpty()) {
-            QFileInfo file(fileName);
-            QDir dir;
-            dir.mkpath(file.absolutePath());
-
-            QFile out(fileName);
-            if (out.open(QIODevice::WriteOnly)) {
-                if (json) {
-                    out.write(serialized);
-                } else {
-                    out.write(root->toString().toUtf8());
-                }
-                out.close();
-            }
-
-            if (out.exists()) {
-                qDebug() << fileName << " written.";
-            } else {
-                qCritical() << "Something went wrong writing" << fileName << ".";
-                exit(1);
-            }
-        } else {
-            if (json) {
-                qout << serialized;
-            } else {
-                qout << root->toString();
-            }
-            qout.flush();
-        }
-
-        exit(0);
-    } else {
-        usage();
+    QTextStream qout(stdout);
+    if (parser.positionalArguments().isEmpty()) {
+        qout << parser.helpText();
+        qout.flush();
         exit(1);
     }
-}
 
-void usage()
-{
-    QTextStream qout(stdout);
-    qout << "Usage: " << QApplication::applicationName() << " -u <url> [-f <filename>] [-j]\n";
-    qout << "\n";
-    qout << "Options:\n";
-    qout << "  -u        the webpage url\n";
-    qout << "  -f        redirect the output to a file\n";
-    qout << "  -j        use the Json format\n";
-    qout << "  -V        print the version\n";
-    qout.flush();
+    QString url = parser.positionalArguments().at(0);
+
+    QString fileName = parser.value(destFileName);
+
+    bool json = parser.isSet(useJson);
+
+    PageTraverser *traverser = new PageTraverser();
+    WebElement *root = traverser->traverse(url);
+
+    QByteArray serialized;
+    if (json) {
+       serialized = QJsonDocument::fromVariant(root->toQVariant()).toJson();
+    }
+
+    if (!fileName.isEmpty()) {
+        QFileInfo file(fileName);
+        QDir dir;
+        dir.mkpath(file.absolutePath());
+
+        QFile out(fileName);
+        if (out.open(QIODevice::WriteOnly)) {
+            if (json) {
+                out.write(serialized);
+            } else {
+                out.write(root->toString().toUtf8());
+            }
+            out.close();
+        }
+
+        if (out.exists()) {
+            qDebug() << fileName << " written.";
+        } else {
+            qCritical() << "Something went wrong writing" << fileName << ".";
+            exit(1);
+        }
+    } else {
+        if (json) {
+            qout << serialized;
+        } else {
+            qout << root->toString();
+        }
+        qout.flush();
+    }
+
+    exit(0);
 }

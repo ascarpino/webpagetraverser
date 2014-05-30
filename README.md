@@ -10,24 +10,28 @@ It includes info about the position, the text, the size and more.
 
 Dependencies
 ------------
-* qt >= 5.0 (http://qt-project.org/)
-* cmake >= 2.8.8 (http://www.cmake.org/)
+* [Qt](http://qt-project.org/) >= 5.0
+* [CMake](http://www.cmake.org/) >= 2.8.8
 
 Build and installation
 ----------------------
-1. $ mkdir build
-2. $ cd build
-3. $ cmake ../
-4. $ make
-5. \# make install
+    $ mkdir build
+    $ cd build
+    $ cmake ../
+    $ make
+    # make install
 
 Potential Errors
 ----------------
-* If CMake does not find the path to your Qt 5 instalation, then set the *-DCMAKE_PREFIX_PATH* option to that path:
+* If CMake does not find the path to your Qt 5 instalation, then set the `-DCMAKE_PREFIX_PATH` option to that path, e.g.:
 
-```
-$ cmake -DCMAKE_PREFIX_PATH=/Users/username/Qt/5.3/clang_64/
-```
+    $ cmake -DCMAKE_PREFIX_PATH=/Users/username/Qt/5.3/clang_64/
+
+Usage
+-----
+    $ WebPageTraverser http://www.google.it
+
+Check `WebPageTraverser -h` for more.
 
 License
 -------
