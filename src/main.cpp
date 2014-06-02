@@ -43,10 +43,10 @@ int main(int argc, char *argv[])
     parser.addVersionOption();
     parser.addPositionalArgument("url", "Webpage URL.");
 
-    QCommandLineOption destFileName("f", "Redirect the output to a file.", "filename");
+    QCommandLineOption destFileName(QStringList() << "f" << "filename", "Redirect the output to a file.", "filename");
     parser.addOption(destFileName);
 
-    QCommandLineOption useJson("j", "Use JSON output instead of plain text.");
+    QCommandLineOption useJson(QStringList() << "j" << "json", "Use JSON output instead of plain text.");
     parser.addOption(useJson);
 
     parser.process(a);
