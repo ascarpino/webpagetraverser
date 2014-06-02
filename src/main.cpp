@@ -58,11 +58,11 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    QString url = parser.positionalArguments().at(0);
+    const QString url = parser.positionalArguments().at(0);
 
-    QString fileName = parser.value(destFileName);
+    const QString fileName = parser.value(destFileName);
 
-    bool json = parser.isSet(useJson);
+    const bool json = parser.isSet(useJson);
 
     PageTraverser *traverser = new PageTraverser();
     WebElement *root = traverser->traverse(url);
