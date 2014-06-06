@@ -42,3 +42,5 @@ Check `WebPageTraverser -h` for more.
 License
 -------
 LGPL3
+
+# Descrizione Progetto
