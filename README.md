@@ -23,9 +23,15 @@ Build and installation
 
 Potential Errors
 ----------------
+##mac
 * If CMake does not find the path to your Qt 5 instalation, then set the `-DCMAKE_PREFIX_PATH` option to that path, e.g.:
 
     $ cmake -DCMAKE_PREFIX_PATH=/Users/username/Qt/5.3/clang_64/
+    
+## Ubuntu
+* If CMake does not find the path to your Qt 5 instalation, then set the `-DCMAKE_PREFIX_PATH` option to that path, e.g.:
+
+    $ cmake -DCMAKE_PREFIX_PATH=/opt/Qt/5.3/clang_64/
 
 Usage
 -----
