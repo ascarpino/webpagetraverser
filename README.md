@@ -33,6 +33,8 @@ Potential Errors
 
     $ cmake -DCMAKE_PREFIX_PATH=/opt/Qt/5.3/clang_64/
 
+**Check that the parent of the folder that contains Qt5CoreConfig.cmake**
+
 Usage
 -----
     $ WebPageTraverser http://www.google.it
