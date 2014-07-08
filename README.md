@@ -46,3 +46,16 @@ License
 LGPL3
 
 # Descrizione Progetto
+
+## Error
+
+1. error **QXcbConnection: Could not connect to display **
+
+install xvfb
+```
+#!bash
+
+$ sudo apt-get install xvfb
+
+$ xvfb-run -a WebPageTraverser -j
+```
