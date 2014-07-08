@@ -47,7 +47,7 @@ LGPL3
 
 # Descrizione Progetto
 
-## Error
+## Errors
 
 1. error **QXcbConnection: Could not connect to display **
 
