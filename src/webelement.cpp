@@ -1,8 +1,8 @@
 /*
  *   This file is part of WebPageTraverser.
  *
- *   Copyright 2012-2013 Andrea Scarpino <me@andreascarpino.it>
- *   Copyright 2012-2013 Fabio Fumarola <fabiofumarola@gmail.com>
+ *   Copyright 2012-2014 Andrea Scarpino <me@andreascarpino.it>
+ *   Copyright 2012-2014 Fabio Fumarola <fabiofumarola@gmail.com>
  *
  *   WebPageTraverser is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
