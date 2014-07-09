@@ -56,7 +56,7 @@ WebElement* PageTraverser::traverse(const QString &url)
 
 void PageTraverser::extractElements(bool ok)
 {
-    //qDebug() << "Loaded webpage: " << page.mainFrame()->url().toString() << "\n";3
+    //qDebug() << "Loaded webpage: " << page.mainFrame()->url().toString() << "\n";
 
     QWebFrame *frame = page.mainFrame();
     if (ok) {
@@ -86,7 +86,7 @@ void PageTraverser::httpResponse(QNetworkReply *reply)
         exit(1);
         break;
     default:
-        qCritical() << "Got an error during request.";
+        qCritical() << "Got an error during request:" << reply->errorString();
         exit(1);
     }
 }
