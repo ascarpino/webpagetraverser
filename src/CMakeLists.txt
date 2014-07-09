@@ -1,7 +1,8 @@
 set(webpagetraverser_SRCS
+    customwebpage.cpp
     main.cpp
-    webelement.cpp
-    pagetraverser.cpp)
+    pagetraverser.cpp
+    webelement.cpp)
 
 configure_file(webpagetraverser.h.in ${CMAKE_CURRENT_BINARY_DIR}/webpagetraverser.h)
 

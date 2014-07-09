@@ -28,7 +28,7 @@
 
 PageTraverser::PageTraverser(QObject *parent) :
     QObject(parent),
-    page(new QWebPage()),
+    page(new CustomWebPage()),
     loop(new QEventLoop())
 {
     connect(&page, SIGNAL(loadFinished(bool)), this, SLOT(extractElements(bool)));
@@ -54,7 +54,7 @@ WebElement* PageTraverser::traverse(const QString &url)
     return root;
 }
 
-void PageTraverser::extractElements(bool ok)
+void PageTraverser::extractElements(const bool ok)
 {
     //qDebug() << "Loaded webpage: " << page.mainFrame()->url().toString() << "\n";
 
