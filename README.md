@@ -21,19 +21,14 @@ Build and installation
     $ make
     # make install
 
-Potential Errors
+Build errors
 ----------------
-##mac
+## Missing Qt5
 * If CMake does not find the path to your Qt 5 instalation, then set the `-DCMAKE_PREFIX_PATH` option to that path, e.g.:
 
-    $ cmake -DCMAKE_PREFIX_PATH=/Users/username/Qt/5.3/clang_64/
-    
-## Ubuntu
-* If CMake does not find the path to your Qt 5 instalation, then set the `-DCMAKE_PREFIX_PATH` option to that path, e.g.:
+    $ cmake -DCMAKE_PREFIX_PATH=/usr/local/lib/cmake/
 
-    $ cmake -DCMAKE_PREFIX_PATH=/opt/Qt/5.3/clang_64/
-
-**Check that the parent of the folder that contains Qt5CoreConfig.cmake**
+**NOTE:** That path should point to the parent of the folder that contains Qt5CoreConfig.cmake
 
 Usage
 -----
@@ -41,21 +36,14 @@ Usage
 
 Check `WebPageTraverser -h` for more.
 
+## Runtime errors
+
+* `QXcbConnection: Could not connect to display`
+
+You don't have a X11 session running. You can simulate it by using [Xvfb](http://xorg.freedesktop.org), install it and then run:
+
+    $ xvfb-run -a WebPageTraverser http://www.google.it
+
 License
 -------
 LGPL3
-
-# Descrizione Progetto
-
-## Errors
-
-1. error **QXcbConnection: Could not connect to display **
-
-install xvfb
-```
-#!bash
-
-$ sudo apt-get install xvfb
-
-$ xvfb-run -a WebPageTraverser -j
-```
