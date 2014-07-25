@@ -10,6 +10,9 @@ It includes info about the position, the text, the size and more.
 
 * [Qt](http://qt-project.org/) >= 5.0
 * [CMake](http://www.cmake.org/) >= 2.8.8
+* GCC
+*libqt5webkit5
+
 
 ## Build and installation
 
