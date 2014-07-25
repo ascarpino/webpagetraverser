@@ -8,11 +8,9 @@ It includes info about the position, the text, the size and more.
 
 ## Dependencies
 
-* [Qt](http://qt-project.org/) >= 5.0
+* [Qt](http://qt-project.org/) (QtWebKit, QtQuick) >= 5.2
 * [CMake](http://www.cmake.org/) >= 2.8.8
-* GCC
-* (libqt5webkit5, libqt5webkit5-dev, qtdeclarative5-dev)
-
+* Make and a C++ compiler
 
 ## Build and installation
 
