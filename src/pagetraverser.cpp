@@ -64,7 +64,7 @@ void PageTraverser::extractElements(bool ok)
         const QWebElement head(doc.firstChild());
         const QWebElement body(head.nextSibling());
 
-        root = populateTree("html", body);
+        root = populateTree("html","html",body);
     }
 
     // we've done here
@@ -91,7 +91,7 @@ void PageTraverser::httpResponse(QNetworkReply *reply)
     }
 }
 
-WebElement* PageTraverser::populateTree(const QString &parentPath, const QWebElement &element)
+WebElement* PageTraverser::populateTree(const QString &parentPath, const QString &parentCSSPath, const QWebElement &element)
 {
     //position
     Position position;
@@ -115,14 +115,20 @@ WebElement* PageTraverser::populateTree(const QString &parentPath, const QWebEle
 
     const QString nodeTag(element.tagName().toLower());
     //create the web Element
-    WebElement *node = new WebElement(parentPath, nodeTag, position, size,
+    WebElement *node = new WebElement(parentPath, parentCSSPath, nodeTag, position, size,
                                       attributes, element.toPlainText().trimmed());
 
     //for each child
     //lista dei figli add populateTree(figlio);
     for (QWebElement elem = element.firstChild(); !elem.isNull(); elem = elem.nextSibling()) {
-        node->getChildren()->append(populateTree(parentPath + "/" + nodeTag, elem));
+        //node->getChildren()->append(populateTree(parentPath + "/" + nodeTag, elem));
+        if(elem.attribute("class").isNull()){
+            node->getChildren()->append(populateTree(parentPath + "/" + nodeTag, parentCSSPath + "/" + nodeTag ,elem));
+        }else{
+            node->getChildren()->append(populateTree(parentPath + "/" + nodeTag, parentCSSPath + "/" + nodeTag + ":" + elem.attribute("class"),elem));
+        }
     }
+
 
     return node;
 }
