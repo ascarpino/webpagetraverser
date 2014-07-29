@@ -8,7 +8,7 @@ set(CMAKE_AUTOMOC ON)
 
 # Set version
 set(WebPageTraverser_VERSION_MAJOR 1)
-set(WebPageTraverser_VERSION_MINOR 6)
+set(WebPageTraverser_VERSION_MINOR 7)
 set(WebPageTraverser_VERSION_STRING "${WebPageTraverser_VERSION_MAJOR}.${WebPageTraverser_VERSION_MINOR}")
 
 if(NOT CMAKE_BUILD_TYPE)

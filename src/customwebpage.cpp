@@ -1,7 +1,7 @@
 /*
  *   This file is part of WebPageTraverser.
  *
- *   Copyright 2012-2014 Andrea Scarpino <me@andreascarpino.it>
+ *   Copyright 2014 Andrea Scarpino <me@andreascarpino.it>
  *
  *   WebPageTraverser is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,38 +17,16 @@
  *   along with WebPageTraverser.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PAGETRAVERSER_H
-#define PAGETRAVERSER_H
-
-// our headers
 #include "customwebpage.h"
-#include "webelement.h"
 
-// Qt headers
-#include <QEventLoop>
-#include <QWebElement>
-
-class PageTraverser : public QObject
+CustomWebPage::CustomWebPage(QObject *parent) :
+    QWebPage(parent)
 {
-    Q_OBJECT
-public:
-    explicit PageTraverser(QObject *parent = 0);
-    virtual ~PageTraverser();
-    WebElement *traverse(const QString &url);
+}
 
-private:
-    CustomWebPage page;
-    QEventLoop loop;
-    WebElement *root;
+QString CustomWebPage::userAgentForUrl(const QUrl &url) const
+{
+    Q_UNUSED(url);
 
-    WebElement* populateTree(const QString &parentPath, const QString &parentCSSPath, const QWebElement &element);
-
-Q_SIGNALS:
-    void fetched();
-
-public Q_SLOTS:
-    void extractElements(const bool ok);
-    void httpResponse(QNetworkReply *reply);
-};
-
-#endif // PAGETRAVERSER_H
+    return QStringLiteral("Mozilla/5.0 (X11; Linux x86_64) Gecko/20100101 Firefox/30.0");
+}

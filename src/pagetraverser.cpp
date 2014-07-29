@@ -1,7 +1,7 @@
 /*
  *   This file is part of WebPageTraverser.
  *
- *   Copyright 2012-2013 Andrea Scarpino <me@andreascarpino.it>
+ *   Copyright 2012-2014 Andrea Scarpino <me@andreascarpino.it>
  *
  *   WebPageTraverser is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 
 PageTraverser::PageTraverser(QObject *parent) :
     QObject(parent),
-    page(new QWebPage()),
+    page(new CustomWebPage()),
     loop(new QEventLoop())
 {
     connect(&page, SIGNAL(loadFinished(bool)), this, SLOT(extractElements(bool)));
@@ -54,9 +54,9 @@ WebElement* PageTraverser::traverse(const QString &url)
     return root;
 }
 
-void PageTraverser::extractElements(bool ok)
+void PageTraverser::extractElements(const bool ok)
 {
-    //qDebug() << "Loaded webpage: " << page.mainFrame()->url().toString() << "\n";3
+    //qDebug() << "Loaded webpage: " << page.mainFrame()->url().toString() << "\n";
 
     QWebFrame *frame = page.mainFrame();
     if (ok) {
@@ -86,7 +86,7 @@ void PageTraverser::httpResponse(QNetworkReply *reply)
         exit(1);
         break;
     default:
-        qCritical() << "Got an error during request.";
+        qCritical() << "Got an error during request:" << reply->errorString();
         exit(1);
     }
 }
