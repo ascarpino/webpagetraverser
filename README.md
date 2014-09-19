@@ -14,7 +14,7 @@ It includes info about the position, the text, the size and more.
 
              2.[qtbase5-dev ](http://packages.ubuntu.com/search?suite=trusty&section=all&arch=any&keywords=qtbase5-dev&searchon=names)
 
-
+             3.[libqt5webkit5-dev](http://packages.ubuntu.com/search?keywords=libqt5webkit5-dev&searchon=names)
 * [CMake](http://www.cmake.org/) >= 2.8.8
 * Make and a C++ compiler
 
