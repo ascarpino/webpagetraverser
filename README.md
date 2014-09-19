@@ -9,8 +9,7 @@ It includes info about the position, the text, the size and more.
 ## Dependencies
 
 * [Qt](http://qt-project.org/) (QtWebKit, QtQuick) >= 5.2
-	
-   Package in ubuntu:  [qt5-default](http://packages.ubuntu.com/search?suite=trusty&section=all&arch=any&keywords=qt5-default&searchon=names)
+	- Package in ubuntu:  [qt5-default](http://packages.ubuntu.com/search?suite=trusty&section=all&arch=any&keywords=qt5-default&searchon=names) 
 * [CMake](http://www.cmake.org/) >= 2.8.8
 * Make and a C++ compiler
 
