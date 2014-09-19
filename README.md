@@ -28,7 +28,7 @@ It includes info about the position, the text, the size and more.
 
 * If CMake does not find the path to your Qt 5 instalation, then set the `-DCMAKE_PREFIX_PATH` option to that path, e.g.:
 
-    $ cmake /.. -DCMAKE_PREFIX_PATH=/usr/local/lib/cmake/
+    $ cmake ../ -DCMAKE_PREFIX_PATH=/usr/local/lib/cmake/
 
 **NOTE:** That path should point to the parent of the folder that contains Qt5CoreConfig.cmake
 
