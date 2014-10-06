@@ -64,7 +64,7 @@ void PageTraverser::extractElements(const bool ok)
         const QWebElement head(doc.firstChild());
         const QWebElement body(head.nextSibling());
 
-        root = populateTree("html","html",body);
+        root = populateTree("html","html","NO-CSS",body);
     }
 
     // we've done here
@@ -91,7 +91,7 @@ void PageTraverser::httpResponse(QNetworkReply *reply)
     }
 }
 
-WebElement* PageTraverser::populateTree(const QString &parentPath, const QString &parentCSSPath, const QWebElement &element)
+WebElement* PageTraverser::populateTree(const QString &parentPath, const QString &parentDomCSSPath, const QString &parentCSSPath, const QWebElement &element)
 {
     //position
     Position position;
@@ -115,7 +115,7 @@ WebElement* PageTraverser::populateTree(const QString &parentPath, const QString
 
     const QString nodeTag(element.tagName().toLower());
     //create the web Element
-    WebElement *node = new WebElement(parentPath, parentCSSPath, nodeTag, position, size,
+    WebElement *node = new WebElement(parentPath, parentDomCSSPath, parentCSSPath, nodeTag, position, size,
                                       attributes, element.toPlainText().trimmed());
 
     //for each child
@@ -123,12 +123,11 @@ WebElement* PageTraverser::populateTree(const QString &parentPath, const QString
     for (QWebElement elem = element.firstChild(); !elem.isNull(); elem = elem.nextSibling()) {
         //node->getChildren()->append(populateTree(parentPath + "/" + nodeTag, elem));
         if(elem.attribute("class").isNull()){
-            node->getChildren()->append(populateTree(parentPath + "/" + nodeTag, parentCSSPath + "/" + nodeTag ,elem));
+            node->getChildren()->append(populateTree(parentPath + "/" + nodeTag, parentDomCSSPath + "/" + nodeTag, parentCSSPath + "/NO-CSS",  elem));
         }else{
-            node->getChildren()->append(populateTree(parentPath + "/" + nodeTag, parentCSSPath + "/" + nodeTag + ":" + elem.attribute("class"),elem));
+            node->getChildren()->append(populateTree(parentPath + "/" + nodeTag, parentDomCSSPath + "/" + nodeTag + ":" + elem.attribute("class"), parentDomCSSPath + "/" + elem.attribute("class"), elem));
         }
     }
-
 
     return node;
 }

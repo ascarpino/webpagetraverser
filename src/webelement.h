@@ -43,7 +43,7 @@ class WebElement : public QObject
     Q_OBJECT
 
 public:
-    explicit WebElement(const QString &parentPath, const QString &parentCSSPath,
+    explicit WebElement(const QString &parentPath, const QString &parentDomCSSPath, const QString &parentCSSPath,
                         const QString &tagName, const Position &position,
                         const Size &size,
                         const QHash<QString, QString> attributes,
@@ -55,6 +55,7 @@ public:
 
 private:
     QString m_parentPath;
+    QString m_parentDomCSSPath;
     QString m_parentCSSPath;
     QString m_nodetag;
     Position m_position;

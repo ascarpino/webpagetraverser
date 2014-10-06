@@ -26,12 +26,14 @@
 
 qint32 WebElement::next_id = 0;
 
-WebElement::WebElement(const QString &parentPath, const QString &parentCSSPath, const QString &nodeTag,
+WebElement::WebElement(const QString &parentPath, const QString &parentDomCSSPath, 
+					   const QString &parentCSSPath, const QString &nodeTag,
                        const Position &position, const Size &size,
                        const QHash<QString, QString> attributes,
                        const QString &text, QObject *parent)
     : QObject(parent)
     , m_parentPath(parentPath)
+    , m_parentDomCSSPath(parentDomCSSPath)
     , m_parentCSSPath(parentCSSPath)
     , m_nodetag(nodeTag)
     , m_position(position)
@@ -57,6 +59,7 @@ QString WebElement::toString()
 
     str.append("webPageTraverserId: " + QString::number(webPageTraverserId) +
                " Parent Path: " + m_parentPath +
+               " Parent Dom CSS Path: " + m_parentDomCSSPath +
                " Parent CSS Path: " + m_parentCSSPath +
                " Node Tag: " + m_nodetag + "\n");
     str.append(" Position: " + QString::number(m_position.top) + " " +
@@ -87,6 +90,7 @@ QVariantMap WebElement::toQVariant()
     QVariantMap map;
     map.insert("webPageTraverserId", webPageTraverserId);
     map.insert("parentPath", m_parentPath);
+    map.insert("parentDomCSSPath", m_parentDomCSSPath);
     map.insert("parentCSSPath", m_parentCSSPath);
     map.insert("nodeTag", m_nodetag);
 
