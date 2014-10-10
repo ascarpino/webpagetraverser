@@ -31,6 +31,8 @@ PageTraverser::PageTraverser(QObject *parent) :
     page(new CustomWebPage()),
     loop(new QEventLoop())
 {
+    page.settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
+
     connect(&page, SIGNAL(loadFinished(bool)), this, SLOT(extractElements(bool)));
     connect(page.networkAccessManager(), SIGNAL(finished(QNetworkReply *)),
             this, SLOT(httpResponse(QNetworkReply *)));
