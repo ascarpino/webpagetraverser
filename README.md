@@ -9,11 +9,9 @@ It includes info about the position, the text, the size and more.
 ## Dependencies
 
 * [Qt](http://qt-project.org/) (QtWebKit, QtQuick) >= 5.2
-	- Package in ubuntu: 
-             1.[qt5-default](http://packages.ubuntu.com/search?suite=trusty&section=all&arch=any&keywords=qt5-default&searchon=names) 
-             2.[qtbase5-dev ](http://packages.ubuntu.com/search?suite=trusty&section=all&arch=any&keywords=qtbase5-dev&searchon=names)
-             3.[libqt5webkit5-dev](http://packages.ubuntu.com/search?keywords=libqt5webkit5-dev&searchon=names)
+	- e.g. for Ubuntu: qt5-default, qtbase5-dev, libqt5webkit5-dev
 * [CMake](http://www.cmake.org/) >= 2.8.8
+	- e.g. for Ubuntu: cmake
 * Make and a C++ compiler
 
 ## Build and installation
