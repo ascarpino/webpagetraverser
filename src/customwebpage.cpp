@@ -28,5 +28,6 @@ QString CustomWebPage::userAgentForUrl(const QUrl &url) const
 {
     Q_UNUSED(url);
 
+    // Some website blacklist default Qt's User-Agent, set a fake one
     return QStringLiteral("Mozilla/5.0 (X11; Linux x86_64) Gecko/20100101 Firefox/30.0");
 }

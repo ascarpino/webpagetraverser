@@ -20,11 +20,9 @@
 #ifndef PAGETRAVERSER_H
 #define PAGETRAVERSER_H
 
-// our headers
 #include "customwebpage.h"
 #include "webelement.h"
 
-// Qt headers
 #include <QEventLoop>
 #include <QWebElement>
 
@@ -34,14 +32,15 @@ class PageTraverser : public QObject
 public:
     explicit PageTraverser(QObject *parent = 0);
     virtual ~PageTraverser();
-    WebElement *traverse(const QString &url);
+    WebElement* traverse(const QString &url);
 
 private:
     CustomWebPage page;
     QEventLoop loop;
-    WebElement *root;
+    WebElement* root;
 
-    WebElement* populateTree(const QString &parentPath, const QString &parentDomCSSPath, const QString &parentCSSPath, const QWebElement &element);
+    WebElement* populateTree(const QString &parentPath, const QString &parentDomCSSPath,
+                             const QString &parentCSSPath, const QWebElement &element);
 
 Q_SIGNALS:
     void fetched();

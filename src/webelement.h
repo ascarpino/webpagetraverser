@@ -21,7 +21,6 @@
 #ifndef WEBELEMENT_H
 #define WEBELEMENT_H
 
-// Qt headers
 #include <QHash>
 #include <QList>
 #include <QVariant>

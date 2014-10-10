@@ -18,10 +18,8 @@
  *   along with WebPageTraverser.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// our headers
 #include "webelement.h"
 
-// Qt headers
 #include <QVariantMap>
 
 qint32 WebElement::next_id = 0;
@@ -66,7 +64,8 @@ QString WebElement::toString()
                QString::number(m_position.left) + " " +
                QString::number(m_position.right) + " " +
                QString::number(m_position.bottom) + "\n");
-    str.append(" Size: " + QString::number(m_size.height) + " " + QString::number(m_size.width) + "\n");
+    str.append(" Size: " + QString::number(m_size.height) + " " +
+               QString::number(m_size.width) + "\n");
 
     if (!m_attributes.isEmpty()) {
         str.append(" Attributes: ");

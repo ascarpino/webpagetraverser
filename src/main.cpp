@@ -17,11 +17,9 @@
  *   along with WebPageTraverser.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// our headers
 #include "webpagetraverser.h"
 #include "pagetraverser.h"
 
-// Qt headers
 #include <QApplication>
 #include <QByteArray>
 #include <QJsonDocument>
@@ -43,10 +41,12 @@ int main(int argc, char *argv[])
     parser.addVersionOption();
     parser.addPositionalArgument("url", "Webpage URL.");
 
-    QCommandLineOption destFileName(QStringList() << "f" << "filename", "Redirect the output to a file.", "filename");
+    QCommandLineOption destFileName(QStringList() << "f" << "filename",
+                                    "Redirect the output to a file.", "filename");
     parser.addOption(destFileName);
 
-    QCommandLineOption useJson(QStringList() << "j" << "json", "Use JSON output instead of plain text.");
+    QCommandLineOption useJson(QStringList() << "j" << "json",
+                               "Use JSON output instead of plain text.");
     parser.addOption(useJson);
 
     parser.process(a);
